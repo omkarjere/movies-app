@@ -32,7 +32,7 @@ class MoviesController extends Controller
             return [$genre['id'] => $genre['name']];
         });
 
-        dump($nowPlayingMovies);
+        // dump($nowPlayingMovies);
         // dump($genres);
         return view('index', compact('popularMovies', 'genres', 'nowPlayingMovies'));
     }
@@ -66,7 +66,11 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        //
+        $movieInfo = Http::withToken(config('services.tmdb.token'))
+            ->get('https://api.themoviedb.org/3/movie/' . $id . '?append_to_response=credits,videos,images')
+            ->json();
+        // dump($movieInfo);
+        return view('show', compact('movieInfo'));
     }
 
     /**
