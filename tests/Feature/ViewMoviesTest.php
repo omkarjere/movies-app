@@ -6,11 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
-
-/*
-    This is broken :(
-*/
-
 class ViewMoviesTest extends TestCase
 {
     private function fakePopluarMovies() {
@@ -39,26 +34,29 @@ class ViewMoviesTest extends TestCase
     private function fakeNowPlayingMovies() {
         return Http::response([
             'results' => [
-                "popularity" => 406.677,
-                "vote_count" => 2607,
-                "video" => false,
-                "poster_path" => "/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
-                "id" => 419704,
-                "adult" => false,
-                "backdrop_path" => "/5BwqwxMEjeFtdknRV792Svo0K1v.jpg",
-                "original_language" => "en",
-                "original_title" => "Now Playing Fake Movie",
-                "genre_ids" => [
-                    12,
-                    18,
-                    9648,
-                    878,
-                    53,
-                ],
-                "title" => "Now Playing Fake Movie",
-                "vote_average" => 6,
-                "overview" => "Now playing fake movie description. The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet earth.",
-                "release_date" => "2019-09-17",
+                [
+
+                    "popularity" => 406.677,
+                    "vote_count" => 2607,
+                    "video" => false,
+                    "poster_path" => "/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
+                    "id" => 419704,
+                    "adult" => false,
+                    "backdrop_path" => "/5BwqwxMEjeFtdknRV792Svo0K1v.jpg",
+                    "original_language" => "en",
+                    "original_title" => "Now Playing Fake Movie",
+                    "genre_ids" => [
+                        12,
+                        18,
+                        9648,
+                        878,
+                        53,
+                    ],
+                    "title" => "Now Playing Fake Movie",
+                    "vote_average" => 6,
+                    "overview" => "Now playing fake movie description. The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet earth.",
+                    "release_date" => "2019-09-17",
+                ]
             ]
         ], 200);
     }
@@ -146,8 +144,8 @@ class ViewMoviesTest extends TestCase
         ], 200);
     }
 
-
-    public function testTheMainPageShowsCorrectInfo()
+    /** @test */
+    public function the_main_page_shows_correct_info()
     {
         Http::fake([
             'https://api.themoviedb.org/3/movie/popular' => $this->fakePopluarMovies(),
