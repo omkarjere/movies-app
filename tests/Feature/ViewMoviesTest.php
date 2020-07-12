@@ -145,8 +145,7 @@ class ViewMoviesTest extends TestCase
     }
 
     /** @test */
-    public function the_main_page_shows_correct_info()
-    {
+    public function theMainPageShowsCorrectInfo() {
         Http::fake([
             'https://api.themoviedb.org/3/movie/popular' => $this->fakePopluarMovies(),
             'https://api.themoviedb.org/3/movie/now_playing' => $this->fakeNowPlayingMovies(),
